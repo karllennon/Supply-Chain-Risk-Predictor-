@@ -1,0 +1,7 @@
+venv/
+data/raw/
+data/processed/*.db
+data/processed/*.pkl
+*.csv
+*.json
+.DS_Store
