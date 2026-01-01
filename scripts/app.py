@@ -8,7 +8,7 @@ st.set_page_config(page_title="Supply Chain Risk Predictor", layout="wide")
 
 @st.cache_resource
 def load_resources():
-    db_path = 'data/processed/supply_chain.db'
+    db_path = 'data/processed/supply_chain_demo.db'
     conn = sqlite3.connect(db_path)
     
     # Load regions

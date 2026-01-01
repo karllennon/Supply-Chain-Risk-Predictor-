@@ -1,6 +1,6 @@
 venv/
 data/raw/
-data/processed/*.db
+data/processed/supply_chain.db
 data/processed/*.pkl
 *.csv
 *.json
