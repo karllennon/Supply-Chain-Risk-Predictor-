@@ -1,3 +1,5 @@
+[Live Interactive Dashboard](https://karllennon-supply-chain-risk-predictor--scriptsapp-viqaxj.streamlit.app/)
+
 Project Title: AI-Driven Supply Chain Risk & Delay Predictor
 A Full-Stack Data Science Solution utilizing Medallion Architecture, Transformers (FinBERT), and XGBoost to predict logistics disruptions.
 
@@ -39,7 +41,7 @@ NLP: HuggingFace Transformers (FinBERT), PyTorch.
 Deployment: Streamlit, Joblib.
 
 How to Run Locally
-Clone: git clone https://github.com/your-username/supply-chain-predictor.git
+Clone: git clone git clone https://github.com/karllennon/Supply-Chain-Risk-Predictor-.git
 
 Environment: python3 -m venv venv && source venv/bin/activate
 
