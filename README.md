@@ -14,6 +14,8 @@ Bronze Layer (Raw): Immutable landing zone for raw DataCo CSVs and JSON news dat
 Silver Layer (Cleaned): Implementation of a SQL Quality Firewall that identified and filtered out ~2% of corrupted records (e.g., negative shipping times).
 
 Gold Layer (Model-Ready): A high-performance feature set created by performing a temporal join between logistics dates and aggregated daily news sentiment.
+
+```mermaid
 graph TD
     A[Raw DataCo CSVs] -->|Ingestion| B(Bronze Layer: Raw SQL)
     B -->|SQL Quality Firewall| C(Silver Layer: Cleaned)
@@ -21,7 +23,8 @@ graph TD
     C -->|Temporal Join| F(Gold Layer: Model-Ready)
     E -->|Temporal Join| F
     F -->|Train/Test Split| G{XGBoost Predictor}
-    G -->|Deployment| H[Streamlit Dashboard]
+    G -->|Deployment| H[Streamlit Dashboard] 
+    ```
 
 Business Value & ROI
 Operational Efficiency: By identifying high-risk delays 48 hours in advance, logistics managers can proactively reroute shipments, saving an average of $500 per shipment in expedited freight costs.
