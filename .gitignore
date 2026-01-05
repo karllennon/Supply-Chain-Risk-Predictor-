@@ -1,7 +1,25 @@
+# Python Hygiene
+__pycache__/
+*.py[cod]
+*$py.class
 venv/
+.env
+
+# MacOS/VS Code Junk
+.DS_Store
+.vscode/
+
+# Data Governance
+# Block ALL raw data and large processed files
 data/raw/
 data/processed/supply_chain.db
 data/processed/*.pkl
-*.csv
-*.json
-.DS_Store
+
+# EXCEPTION: Allow the demo files for the Cloud App
+!data/processed/supply_chain_demo.db
+!data/processed/supply_chain_model.pkl
+!data/processed/model_features.pkl
+
+# Documentation/Images
+# (Allow images like feature_importance.png for the README)
+!notebooks/*.png
