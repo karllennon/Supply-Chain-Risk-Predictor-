@@ -17,6 +17,7 @@ df_news = df_news[df_news['category'].isin(relevant_categories)]
 
 # 3. Standardize the date to match your logistics table
 df_news['date'] = pd.to_datetime(df_news['date'])
+# NOTE: Date format must serialize to YYYY-MM-DD in SQLite for the gold layer JOIN to match correctly.
 
 # 4. Save to Bronze SQL
 conn = sqlite3.connect('data/processed/supply_chain.db')
