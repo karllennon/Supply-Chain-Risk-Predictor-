@@ -40,7 +40,7 @@ try:
     
     # Check how many rows passed the firewall
     count = pd.read_sql("SELECT COUNT(*) FROM silver_logistics", conn).iloc[0,0]
-    rbronze_count = pd.read_sql("SELECT COUNT(*) FROM bronze_logistics", conn).iloc[0, 0]
+    bronze_count = pd.read_sql("SELECT COUNT(*) FROM bronze_logistics", conn).iloc[0, 0]
     removed = bronze_count - count
     print(f"Silver Layer Created: {count} rows validated.")
     print(f"Quality Firewall Result: {removed} rows filtered out as noise/errors.")
