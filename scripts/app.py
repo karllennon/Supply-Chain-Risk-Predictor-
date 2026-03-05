@@ -31,7 +31,7 @@ def load_resources():
 # Unpack the returned resources
 regions, categories, total_rows, model, model_features = load_resources()
 
-st.title("🚚 AI Supply Chain Delay Predictor")
+st.title("AI Supply Chain Delay Predictor")
 st.markdown("Predict shipping delays using Logistics Data + Real-time News Sentiment.")
 
 # Sidebar - Inputs
@@ -47,10 +47,13 @@ risk_input = st.sidebar.slider("News Sentiment Risk Score", 0.0, 1.0, 0.5,
 
 # ROI & Impact Metrics Sidebar Addition
 st.sidebar.divider()
-st.sidebar.subheader("📈 Stakeholder Impact")
+st.sidebar.subheader("Stakeholder Impact")
 st.sidebar.write("Based on current model precision:")
 st.sidebar.metric(label="Est. Cost Avoidance", value="$7,500", delta="Monthly Avg")
 st.sidebar.caption("Assumes proactive rerouting for high-risk flags.")
+
+def sanitize(s):
+    return s.replace(' ', '_').replace('[', '').replace(']', '').replace('<', '')
 
 if st.button("Predict Delay"):
     # Prepare input for model
@@ -61,14 +64,12 @@ if st.button("Predict Delay"):
     input_data['daily_risk_score'] = risk_input
     
     # Fill in categorical dummies
-    if f'shipping_mode_{mode}' in model_features:
-        input_data[f'shipping_mode_{mode}'] = 1
-    if f'order_region_{region}' in model_features:
-        input_data[f'order_region_{region}'] = 1
-    
-    # Only set category dummy if it's not "Other" and exists in features
-    if category != "Other" and f'category_name_{category}' in model_features:
-        input_data[f'category_name_{category}'] = 1
+    if f'shipping_mode_{sanitize(mode)}' in model_features:
+        input_data[f'shipping_mode_{sanitize(mode)}'] = 1
+    if f'order_region_{sanitize(region)}' in model_features:
+        input_data[f'order_region_{sanitize(region)}'] = 1
+    if category != "Other" and f'category_name_{sanitize(category)}' in model_features:
+        input_data[f'category_name_{sanitize(category)}'] = 1
 
     # Prediction
     prediction = model.predict(input_data)[0]
@@ -80,9 +81,9 @@ if st.button("Predict Delay"):
     st.metric("Predicted Delay", f"{prediction:.2f} Days", delta=f"{risk_impact:.2f} due to News")
     
     if prediction > 1.0:
-        st.warning("⚠️ High Risk of Delay Detected")
+        st.warning("High Risk of Delay Detected")
     else:
-        st.success("✅ On-track for on-time delivery")
+        st.success("On-track for on-time delivery")
 
 st.write("---")
 st.subheader("Historical Context")
