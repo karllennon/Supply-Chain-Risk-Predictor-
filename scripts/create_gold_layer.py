@@ -10,6 +10,8 @@ print("--- Creating Gold Layer (Model-Ready Dataset) ---")
 # 1. Aggregates news sentiment by date (Daily Average)
 # 2. Cleans the messy logistics dates to match the news dates
 # 3. Joins them into a final feature set
+# NOTE: order_date must be strictly MM/DD/YYYY format.
+# Rows with malformed dates will silently receive neutral sentiment (0.5 via COALESCE).
 gold_sql = """
 WITH daily_sentiment AS (
     -- Group news by date to get a single 'Risk Score' per day
